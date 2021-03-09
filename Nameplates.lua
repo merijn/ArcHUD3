@@ -18,27 +18,6 @@ function ArcHUD:InitNameplate(this, unit)
 		end
 	end
 
-	this.OnEnter = function(self)
-		if(SpellIsTargeting()) then
-			if (SpellCanTargetUnit(self.unit)) then
-				SetCursor("CAST_CURSOR")
-			else
-				SetCursor("CAST_ERROR_CURSOR")
-			end
-		end
-		GameTooltip:SetOwner(self, "ANCHOR_NONE")
-		GameTooltip:SetPoint("BOTTOM", self, "TOP", 0, 20)
-		GameTooltip:SetUnit(self.unit)
-		GameTooltip:Show()
-	end
-	this.OnLeave = function(self)
-		if(SpellIsTargeting()) then
-			SetCursor("CAST_ERROR_CURSOR")
-		end
-		if(GameTooltip:IsOwned(self)) then
-			GameTooltip:Hide()
-		end
-	end
 	this.OnEvent = function(self, event)
 		-- no change if disabled and if nameplates are active in combat anyway
 		if(self.disabled or ArcHUD.db.profile.NameplateCombat) then return end
