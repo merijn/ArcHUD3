@@ -4,15 +4,8 @@ local AceAddon = LibStub("AceAddon-3.0")
 
 local AceConfigRegistry = LibStub("AceConfigRegistry-3.0")
 
-local LibClassicDurations = nil
-
 -- classic/retail differences
 local UnitAura = UnitAura	-- on retail this improves performance, on classic it prevents tainting the global
-if ArcHUD.classic then
-	LibClassicDurations = LibStub("LibClassicDurations", true)
-	LibClassicDurations:Register("ArcHUD_CustomBuffModule")
-	UnitAura = LibClassicDurations.UnitAuraWrapper
-end
 
 ArcHUD.customModuleCount = 0
 ArcHUD.customModules = {}
@@ -141,9 +134,7 @@ function CustomBuffRingTemplate:OnModuleEnable()
 	-- Register the events we will use
 	self:RegisterEvent("PLAYER_ENTERING_WORLD",	"EventHandler")
 	self:RegisterEvent("PLAYER_TARGET_CHANGED", "EventHandler")
-	if not ArcHUD.classic then
-		self:RegisterEvent("PLAYER_FOCUS_CHANGED", 	"EventHandler")
-	end
+        self:RegisterEvent("PLAYER_FOCUS_CHANGED", 	"EventHandler")
 	self:RegisterUnitEvent("UNIT_AURA",			"EventHandler")
 
 	-- Activate ring timers
@@ -158,9 +149,7 @@ function CustomBuffRingTemplate:OnModuleDisable()
 	-- Unregister events
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 	self:UnregisterEvent("PLAYER_TARGET_CHANGED")
-	if not ArcHUD.classic then
-		self:UnregisterEvent("PLAYER_FOCUS_CHANGED")
-	end
+        self:UnregisterEvent("PLAYER_FOCUS_CHANGED")
 	self:UnregisterUnitEvent("UNIT_AURA")
 
 	self:StopTimer("UpdateBuff")
@@ -346,10 +335,6 @@ function CustomBuffRingTemplate:AppendCustomModuleOptions()
 		end,
 	}
 
-	if ArcHUD.classic then
-		self.optionsTable.args.Unit.values.focus = nil
-	end
-	
 	self.optionsTable.args.BuffName = {
 		type		= "input",
 		name		= LM["TEXT"]["CUSTNAME"],

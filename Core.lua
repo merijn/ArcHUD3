@@ -17,16 +17,6 @@ ArcHUD.classic = true
 ArcHUD.UnitCastingInfo = UnitCastingInfo
 ArcHUD.UnitChannelInfo = UnitChannelInfo
 
-if ArcHUD.classic then
-	ArcHUD.LibClassicCasterino = LibStub("LibClassicCasterino", true)
-	ArcHUD.UnitCastingInfo = function(unit)
-        return ArcHUD.LibClassicCasterino:UnitCastingInfo(unit)
-    end
-    ArcHUD.UnitChannelInfo = function(unit)
-        return ArcHUD.LibClassicCasterino:UnitChannelInfo(unit)
-    end
-end
-
 -- Locale object
 local L = LibStub("AceLocale-3.0"):GetLocale("ArcHUD_Core")
 
@@ -341,9 +331,7 @@ function ArcHUD:OnProfileChanged(db, profile)
 			end
 		end
 		self:RegisterEvent("PLAYER_TARGET_CHANGED",	  "TargetUpdate")
-		if (not ArcHUD.classic) then
-			self:RegisterEvent("PLAYER_FOCUS_CHANGED", 	  "TargetUpdate")
-		end
+                self:RegisterEvent("PLAYER_FOCUS_CHANGED", 	  "TargetUpdate")
 
 		-- Show target frame if we have a target
 		if(UnitExists("target")) then
@@ -384,9 +372,7 @@ function ArcHUD:OnProfileChanged(db, profile)
 		self:UnregisterEvent("UNIT_DISPLAYPOWER", 		"EventHandler")
 		self:UnregisterEvent("UNIT_AURA", 				"TargetAuras")
 		self:UnregisterEvent("PLAYER_TARGET_CHANGED",	"TargetUpdate")
-		if (not ArcHUD.classic) then
-			self:UnregisterEvent("PLAYER_FOCUS_CHANGED", 	"TargetUpdate")
-		end
+                self:UnregisterEvent("PLAYER_FOCUS_CHANGED", 	"TargetUpdate")
 	end
 
 	self:LevelDebug(d_notice, "Positioning ring anchors. Width: "..self.db.profile.Width)
@@ -443,9 +429,7 @@ function ArcHUD:UnregisterAll()
 	self:UnregisterEvent("UNIT_AURA")
 	self:UnregisterEvent("UNIT_FACTION") 
 	self:UnregisterEvent("PLAYER_TARGET_CHANGED") 
-	if (not ArcHUD.classic) then
-		self:UnregisterEvent("PLAYER_FOCUS_CHANGED") 
-	end
+        self:UnregisterEvent("PLAYER_FOCUS_CHANGED") 
 
 	self:LevelDebug(d_notice, "Disabling timers")
 	self:StopTimer("UpdateTargetTarget")
