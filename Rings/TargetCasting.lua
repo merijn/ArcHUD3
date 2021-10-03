@@ -153,7 +153,7 @@ function module:OnModuleEnable()
 end
 
 function module:OnModuleDisable()
-	if ArcHUD.classic then
+	if ArcHUD.classicWoW then
 		ArcHUD.LibClassicCasterino.UnregisterCallback(self, "UNIT_SPELLCAST_START")
 		ArcHUD.LibClassicCasterino.UnregisterCallback(self, "UNIT_SPELLCAST_DELAYED")
 		ArcHUD.LibClassicCasterino.UnregisterCallback(self, "UNIT_SPELLCAST_CHANNEL_START")
