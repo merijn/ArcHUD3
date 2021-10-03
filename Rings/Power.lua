@@ -104,7 +104,7 @@ function module:OnModuleEnable()
 	else
 		self.f:GhostMode(false, self.unit)
 
-		info = self:GetPowerBarColorText(UnitPowerType(self.unit))
+		local info = self:GetPowerBarColorText(UnitPowerType(self.unit))
 		self.MPText:SetVertexColor(info.r, info.g, info.b)
 
 		self.f:SetMax(UnitPowerMax(self.unit))
