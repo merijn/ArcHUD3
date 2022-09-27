@@ -50,8 +50,6 @@ function ArcHUD:InitNameplate(this, unit)
 		end
 	end
 
-	this:SetScript("OnEnter", this.OnEnter)
-	this:SetScript("OnLeave", this.OnLeave)
 	this:SetScript("OnEvent", this.OnEvent)
 
 	this:RegisterEvent("PLAYER_REGEN_ENABLED")
@@ -84,6 +82,8 @@ function ArcHUD:InitNameplate(this, unit)
 		
 		self:EnableMouse(true)
 		self:SetToplevel(true)
+		this:SetScript("OnEnter", this.OnEnter)
+		this:SetScript("OnLeave", this.OnLeave)
 
 		self.state = true
 	end
@@ -97,6 +97,8 @@ function ArcHUD:InitNameplate(this, unit)
 		self:SetToplevel(false)
 
 		self.state = false
+		this:SetScript("OnEnter", nil)
+		this:SetScript("OnLeave", nil)
 	end
 
 	-- Add nameplate to list
