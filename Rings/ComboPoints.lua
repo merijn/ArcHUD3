@@ -73,9 +73,7 @@ function comboTemplate:UpdatePowerRing()
 end
 
 function comboTemplate:UpdatePower(event, arg1, arg2)
-	if (event == "UNIT_COMBO_POINTS") or (event == "PLAYER_TARGET_CHANGED") then
-		self:UpdatePowerRing()
-	end
+    self:UpdatePowerRing()
 end
 
 function comboTemplate:UpdateActive(event, arg1)
@@ -101,7 +99,8 @@ function comboTemplate:UpdateActive(event, arg1)
 				self:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED", "UpdateActive")
 			end
 			self:RegisterEvent("PLAYER_TARGET_CHANGED", "UpdatePower")
-			self:RegisterUnitEvent("UNIT_COMBO_POINTS", "UpdatePower", self.unit)
+			self:RegisterUnitEvent("UNIT_POWER_FREQUENT", "UpdatePower", self.unit)
+			self:RegisterUnitEvent("UNIT_DISPLAYPOWER", "UpdatePower", self.unit)
 
 			-- Activate ring timers
 			self:StartRingTimers()
@@ -112,7 +111,8 @@ function comboTemplate:UpdateActive(event, arg1)
 				self:UnregisterEvent("PLAYER_SPECIALIZATION_CHANGED")
 			end
 			self:UnregisterEvent("PLAYER_TARGET_CHANGED")
-			self:UnregisterUnitEvent("UNIT_COMBO_POINTS")
+			self:UnregisterUnitEvent("UNIT_POWER_FREQUENT")
+			self:UnregisterUnitEvent("UNIT_DISPLAYPOWER")
 
 			-- Deactivate ring timers
 			self:StopRingTimers()
