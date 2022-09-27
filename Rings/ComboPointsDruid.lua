@@ -32,12 +32,12 @@ module.powerTypeString = "COMBO_POINTS"
 module.flashAt = nil -- flash when full
 
 function module:Initialize()
-	self.InitializePowerRing = ArcHUD.templatePowerRing.InitializePowerRing
-	self.OnModuleUpdate = ArcHUD.templatePowerRing.OnModuleUpdate
-	self.OnModuleEnable = ArcHUD.templatePowerRing.OnModuleEnable
-	self.UpdatePowerRing = ArcHUD.templatePowerRing.UpdatePowerRing
-	self.UpdatePower = ArcHUD.templatePowerRing.UpdatePower
-	self.UpdateActive = ArcHUD.templatePowerRing.UpdateActive
+	self.InitializePowerRing = ArcHUD.comboTemplate.InitializePowerRing
+	self.OnModuleUpdate = ArcHUD.comboTemplate.OnModuleUpdate
+	self.OnModuleEnable = ArcHUD.comboTemplate.OnModuleEnable
+	self.UpdatePowerRing = ArcHUD.comboTemplate.UpdatePowerRing
+	self.UpdatePower = ArcHUD.comboTemplate.UpdatePower
+	self.UpdateActive = ArcHUD.comboTemplate.UpdateActive
 
 	self:InitializePowerRing()
 end
